@@ -4,7 +4,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
-import javax.ws.rs.GET;
+
 import org.apache.http.client.methods.HttpGet;
 
 /**
@@ -16,7 +16,6 @@ public class test {
 
 
   public static void main(String[] args) {
-    HttpGet temp;
 
     HttpURLConnection con = null;
     StringBuilder str = new StringBuilder();
@@ -26,7 +25,6 @@ public class test {
       con = (HttpURLConnection) url.openConnection();
       con.setRequestMethod("GET");
       Map<String, List<String>> map = con.getHeaderFields();
-
       System.out.println("Printing Response Header...\n");
 
       for (Map.Entry<String, List<String>> entry : map.entrySet()) {
