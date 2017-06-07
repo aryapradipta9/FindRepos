@@ -55,7 +55,7 @@ public class UserListConn {
     userLists = new ArrayList<>();
     minRepoNum = 0;
     maxRepoNum = 100000;
-    minFollower = 10000;
+    minFollower = 0;
     maxFollower = 1000000;
     keyword = "";
     repoNum = false;

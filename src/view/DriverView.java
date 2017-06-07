@@ -5,6 +5,8 @@ import model.UserListConn;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -38,22 +40,68 @@ public class DriverView {
         //testing.setKeyword("");
         testing.searchByUsername();
         //Create and set up the content pane.
-        JPanel p = new JPanel(new GridLayout(1,2));
+        JPanel p = new JPanel(new GridLayout(2,2));
         RepoListView repo = new RepoListView();
         RepoListConn rp = new RepoListConn();
-        rp.setUsername("torvalds");
-        rp.search();
-
         UserListView user = new UserListView();
-        p.add(repo);
         p.add(user);
+        p.add(repo);
+        SearchBox searchBox = new SearchBox();
+        p.add(searchBox);
         user.update(testing.getUserLists().toArray());
-        repo.update(rp.getRepoList());
         JFrame frame = new JFrame("SimpleTableDemo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(p);
         frame.pack();
         frame.setVisible(true);
+        searchBox.getButton().addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent e) {
+            testing.setKeyword(searchBox.getTextContent());
+            testing.searchByUsername();
+            user.update(testing.getUserLists().toArray());
+            frame.pack();
+            user.getTable().addMouseListener(new MouseListener() {
+              @Override
+              public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 1) {
+                  final JTable target = (JTable)e.getSource();
+                  final int row = target.getSelectedRow();
+                  final int column = target.getSelectedColumn();
+                  // Cast to ur Object type
+                  final String urObjctInCell = (String)target.getValueAt(row, column);
+
+                  rp.setUsername(urObjctInCell);
+                  rp.search();
+                  repo.update(rp.getRepoList());
+                  frame.pack();
+                  System.out.println(urObjctInCell);
+                }
+
+              }
+
+              @Override
+              public void mousePressed(MouseEvent e) {
+
+              }
+
+              @Override
+              public void mouseReleased(MouseEvent e) {
+
+              }
+
+              @Override
+              public void mouseEntered(MouseEvent e) {
+
+              }
+
+              @Override
+              public void mouseExited(MouseEvent e) {
+
+              }
+            });
+          }
+        });
         user.getTable().addMouseListener(new MouseListener() {
           @Override
           public void mouseClicked(MouseEvent e) {
