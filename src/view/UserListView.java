@@ -1,7 +1,6 @@
 package view;
 
-import model.Repo;
-import model.RepoListConn;
+import model.UserListConn;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,13 +8,10 @@ import java.awt.*;
 /**
  * Created by 13515017 / Putu Arya Pradipta.
  * Tanggal 6/4/2017.
- * FileName : RepoListView.java.
+ * FileName : UserListView.java.
  */
-public class RepoListView extends JPanel {
-
-  private final Object[] header = {"Name",
-      "Description",
-      "URL"};
+public class UserListView extends JPanel {
+  private final Object[] header = {"Username"};
   private Object[][] temp;
   private JTable table;
 
@@ -23,16 +19,14 @@ public class RepoListView extends JPanel {
     return table;
   }
 
-  public RepoListView() {
+  public UserListView() {
     super(new GridLayout(1,0));
-    // converting to Object[]
   }
-  public void update(Repo[] result) {
-    Object[][] temp = new Object[result.length][3];
+
+  public void update(Object[] result) {
+    Object[][] temp = new Object[result.length][1];
     for (int i = 0; i < result.length; i++) {
-      temp[i][0] = result[i].getName();
-      temp[i][1] = result[i].getDescription();
-      temp[i][2] = result[i].getHtml_url();
+      temp[i][0] = result[i];
     }
     removeAll();
     table = new JTable(temp, header);
@@ -44,16 +38,15 @@ public class RepoListView extends JPanel {
     add(scrollPane);
   }
   public static void main(String[] args) {
-
-    RepoListConn testing = new RepoListConn();
-    testing.setUsername("torvalds");
-    testing.search();
+    UserListConn testing = new UserListConn();
+    testing.setFollower(true);
+    //testing.setKeyword("");
+    testing.searchByUsername();
     JFrame frame = new JFrame("SimpleTableDemo");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     //Create and set up the content pane.
-    RepoListView newContentPane = new RepoListView();
-    newContentPane.update(testing.getRepoList());
+    UserListView newContentPane = new UserListView();
+    newContentPane.update(testing.getUserLists().toArray());
     newContentPane.setOpaque(true); //content panes must be opaque
     frame.setContentPane(newContentPane);
 
