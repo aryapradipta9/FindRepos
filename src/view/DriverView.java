@@ -58,7 +58,11 @@ public class DriverView {
           @Override
           public void actionPerformed(ActionEvent e) {
             testing.setKeyword(searchBox.getTextContent());
-            testing.searchByUsername();
+            if (searchBox.getSearchCriteria().getSelectedid() == 0) {
+              testing.searchByUsername();
+            } else {
+              testing.searchByEmail();
+            }
             user.update(testing.getUserLists().toArray());
             frame.pack();
             user.getTable().addMouseListener(new MouseListener() {

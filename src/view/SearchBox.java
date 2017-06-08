@@ -13,12 +13,19 @@ import java.awt.event.ActionListener;
 public class SearchBox extends JPanel {
   private JTextField textField;
   private JButton button;
+  private SearchCriteria searchCriteria;
   public SearchBox() {
-    super(new GridLayout(1,2));
+    super(new GridLayout(2,2));
     textField = new JTextField();
     button = new JButton("SEARCH");
     add(textField);
     add(button);
+    searchCriteria = new SearchCriteria();
+    add(searchCriteria);
+  }
+
+  public SearchCriteria getSearchCriteria() {
+    return searchCriteria;
   }
 
   public String getTextContent() {

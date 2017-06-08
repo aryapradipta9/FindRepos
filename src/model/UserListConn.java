@@ -113,8 +113,16 @@ public class UserListConn {
   public void searchByEmail() {
     // delete semua hasil terdahulu
     userLists.clear();
-    String urlLink = "https://api.github.com/search/users?" + "q=" + keyword + "+in:email";
-    GetConn connection = new GetConn(urlLink);
+    StringBuffer urlLink = new StringBuffer("https://api.github.com/search/users?" + "q=");
+    if (!keyword.equals("")) {
+      urlLink.append(keyword + "+");
+    }
+    urlLink.append("in:email");
+    if (follower) {
+      urlLink.append("+followers:\"" + minFollower + "%20..%20" + maxFollower + "\"");
+    }
+    System.out.println(urlLink.toString());
+    GetConn connection = new GetConn(urlLink.toString());
     Gson gson = new Gson();
     SearchResults res = gson.fromJson(connection.getResponse().toString(),SearchResults.class);
     for (SearchResults.LoginName log : res.items) {
