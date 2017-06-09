@@ -40,8 +40,6 @@ public class UserListView extends JPanel {
   public static void main(String[] args) {
     UserListConn testing = new UserListConn();
     testing.setFollower(true);
-    //testing.setKeyword("");
-    testing.searchByUsername();
     JFrame frame = new JFrame("SimpleTableDemo");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     //Create and set up the content pane.

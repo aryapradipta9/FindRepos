@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 /**
  * Created by 13515017 / Putu Arya Pradipta.
@@ -37,8 +39,6 @@ public class DriverView {
       public void run() {
         UserListConn testing = new UserListConn();
         testing.setFollower(true);
-        //testing.setKeyword("");
-        testing.searchByUsername();
         //Create and set up the content pane.
         JPanel p = new JPanel(new GridLayout(2,2));
         RepoListView repo = new RepoListView();
@@ -57,12 +57,12 @@ public class DriverView {
         searchBox.getButton().addActionListener(new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
-            testing.setKeyword(searchBox.getTextContent());
-            if (searchBox.getSearchCriteria().getSelectedid() == 0) {
-              testing.searchByUsername();
-            } else {
-              testing.searchByEmail();
+            try {
+              testing.setKeyword(URLEncoder.encode(searchBox.getTextContent(),"UTF-8") );
+            } catch (UnsupportedEncodingException e1) {
+              e1.printStackTrace();
             }
+            testing.search(searchBox.getSearchCriteria().getSelectedid());
             user.update(testing.getUserLists().toArray());
             frame.pack();
             user.getTable().addMouseListener(new MouseListener() {

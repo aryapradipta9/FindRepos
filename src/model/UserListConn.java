@@ -90,14 +90,20 @@ public class UserListConn {
     this.userLists = userLists;
   }
 
-  public void searchByUsername() {
+  public void search(int selection) {
     // delete semua hasil terdahulu
     userLists.clear();
     StringBuffer urlLink = new StringBuffer("https://api.github.com/search/users?" + "q=");
     if (!keyword.equals("")) {
       urlLink.append(keyword + "+");
     }
-    urlLink.append("in:login");
+    if (selection == 0) {
+      urlLink.append("in:login");
+    } else if (selection == 1) {
+      urlLink.append("in:fullname");
+    } else {
+      urlLink.append("in:email");
+    }
     if (follower) {
       urlLink.append("+followers:\"" + minFollower + "%20..%20" + maxFollower + "\"");
     }
@@ -117,7 +123,7 @@ public class UserListConn {
     if (!keyword.equals("")) {
       urlLink.append(keyword + "+");
     }
-    urlLink.append("in:email");
+
     if (follower) {
       urlLink.append("+followers:\"" + minFollower + "%20..%20" + maxFollower + "\"");
     }
@@ -134,7 +140,6 @@ public class UserListConn {
     UserListConn testing = new UserListConn();
     testing.setFollower(true);
     testing.setKeyword("torv");
-    testing.searchByUsername();
     ArrayList<String> res = testing.getUserLists();
     for (String k : res) {
       System.out.println(k);
