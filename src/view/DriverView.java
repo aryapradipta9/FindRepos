@@ -17,11 +17,12 @@ import java.net.URLEncoder;
  * Tanggal 6/7/2017.
  * FileName : DriverView.java.
  */
-public class DriverView {
+public class DriverView extends JPanel {
   private RepoListView repo;
   private UserListView user;
 
   public DriverView() {
+    super(new GridLayout(2,2));
     repo = new RepoListView();
     user = new UserListView();
   }
@@ -48,12 +49,17 @@ public class DriverView {
         p.add(repo);
         SearchBox searchBox = new SearchBox();
         p.add(searchBox);
+        SearchFilter searchFilter = new SearchFilter();
+        p.add(searchFilter);
         user.update(testing.getUserLists().toArray());
+        //JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("SimpleTableDemo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(p);
         frame.pack();
         frame.setVisible(true);
+
+        frame.setJMenuBar(new MenuBar());
         searchBox.getButton().addActionListener(new ActionListener() {
           @Override
           public void actionPerformed(ActionEvent e) {
@@ -61,6 +67,20 @@ public class DriverView {
               testing.setKeyword(URLEncoder.encode(searchBox.getTextContent(),"UTF-8") );
             } catch (UnsupportedEncodingException e1) {
               e1.printStackTrace();
+            }
+            if (searchFilter.getFollower().isSelected()) {
+              testing.setFollower(true);
+              testing.setMinFollower(Integer.parseInt(searchFilter.getMinfollower().getText()));
+              testing.setMaxFollower(Integer.parseInt(searchFilter.getMaxfollower().getText()));
+            } else {
+              testing.setFollower(false);
+            }
+            if (searchFilter.getRepository().isSelected()) {
+              testing.setRepoNum(true);
+              testing.setMinRepoNum(Integer.parseInt(searchFilter.getMinrepository().getText()));
+              testing.setMaxRepoNum(Integer.parseInt(searchFilter.getMaxrepository().getText()));
+            } else {
+              testing.setRepoNum(false);
             }
             testing.search(searchBox.getSearchCriteria().getSelectedid());
             user.update(testing.getUserLists().toArray());

@@ -32,8 +32,6 @@ public class UserListConn {
     this.follower = follower;
   }
 
-
-
   public void setMinFollower(int minFollower) {
     this.minFollower = minFollower;
   }
@@ -106,6 +104,9 @@ public class UserListConn {
     }
     if (follower) {
       urlLink.append("+followers:\"" + minFollower + "%20..%20" + maxFollower + "\"");
+    }
+    if (repoNum) {
+      urlLink.append("+repos:\"" + minRepoNum + "%20..%20" + maxRepoNum + "\"");
     }
     System.out.println(urlLink.toString());
     GetConn connection = new GetConn(urlLink.toString());

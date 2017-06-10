@@ -22,6 +22,7 @@ public class SearchBox extends JPanel {
     add(button);
     searchCriteria = new SearchCriteria();
     add(searchCriteria);
+    textField.setText("wowowo");
   }
 
   public SearchCriteria getSearchCriteria() {

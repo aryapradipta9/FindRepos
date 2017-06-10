@@ -17,7 +17,7 @@ public class SearchCriteria extends JPanel {
   public SearchCriteria() {
     super(new GridLayout(1,3));
     username = new JRadioButton("username");
-    username.setEnabled(true);
+    username.setSelected(true);
     fullname = new JRadioButton("fullname");
     email = new JRadioButton("email");
     ButtonGroup group = new ButtonGroup();
