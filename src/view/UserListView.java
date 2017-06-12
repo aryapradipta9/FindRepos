@@ -3,6 +3,7 @@ package view;
 import model.UserListConn;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 /**
@@ -14,13 +15,16 @@ public class UserListView extends JPanel {
   private final Object[] header = {"Username"};
   private Object[][] temp;
   private JTable table;
-
+  private JScrollPane scrollPane;
+  private DefaultTableModel defaultTableModel;
   public JTable getTable() {
     return table;
   }
 
   public UserListView() {
     super(new GridLayout(1,0));
+    scrollPane = new JScrollPane();
+    add(scrollPane);
   }
 
   public void update(Object[] result) {
@@ -28,14 +32,16 @@ public class UserListView extends JPanel {
     for (int i = 0; i < result.length; i++) {
       temp[i][0] = result[i];
     }
-    removeAll();
+    // removing all current data
+
+    //removeAll();
     table = new JTable(temp, header);
     table.setPreferredScrollableViewportSize(new Dimension(500, 70));
     table.setFillsViewportHeight(true);
     //Create the scroll pane and add the table to it.
-    JScrollPane scrollPane = new JScrollPane(table);
+    scrollPane.setViewportView(table);
     //Add the scroll pane to this panel.
-    add(scrollPane);
+    //add(table);
   }
   public static void main(String[] args) {
     UserListConn testing = new UserListConn();

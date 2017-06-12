@@ -18,6 +18,7 @@ public class RepoListView extends JPanel {
       "URL"};
   private Object[][] temp;
   private JTable table;
+  private JScrollPane scrollPane;
 
   public JTable getTable() {
     return table;
@@ -25,6 +26,8 @@ public class RepoListView extends JPanel {
 
   public RepoListView() {
     super(new GridLayout(1,0));
+    scrollPane = new JScrollPane(table);
+    add(scrollPane);
     // converting to Object[]
   }
   public void update(Repo[] result) {
@@ -34,14 +37,14 @@ public class RepoListView extends JPanel {
       temp[i][1] = result[i].getDescription();
       temp[i][2] = result[i].getHtml_url();
     }
-    removeAll();
+    //removeAll();
     table = new JTable(temp, header);
     table.setPreferredScrollableViewportSize(new Dimension(500, 70));
     table.setFillsViewportHeight(true);
     //Create the scroll pane and add the table to it.
-    JScrollPane scrollPane = new JScrollPane(table);
+
     //Add the scroll pane to this panel.
-    add(scrollPane);
+    scrollPane.setViewportView(table);
   }
   public static void main(String[] args) {
 

@@ -15,13 +15,24 @@ public class SearchBox extends JPanel {
   private JButton button;
   private SearchCriteria searchCriteria;
   public SearchBox() {
-    super(new GridLayout(2,2));
+    super(new BorderLayout());
+    GridBagConstraints c = new GridBagConstraints();
+    c.fill = GridBagConstraints.BOTH;
+    c.weighty = 0.5;
+    c.weightx = 0.5;
+    c.gridx = 0;
+    c.gridy = 0;
+    c.ipadx = 5;
+    c.gridwidth = 5;
     textField = new JTextField();
     button = new JButton("SEARCH");
-    add(textField);
-    add(button);
+    add(textField,BorderLayout.CENTER);
+    c.gridwidth = 1;
+    c.ipadx = 0;
+    c.gridx = 5;
+    add(button,BorderLayout.LINE_END);
     searchCriteria = new SearchCriteria();
-    add(searchCriteria);
+    //add(searchCriteria);
     textField.setText("wowowo");
   }
 

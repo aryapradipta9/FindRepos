@@ -20,6 +20,7 @@ import java.net.URLEncoder;
 public class DriverView extends JPanel {
   private RepoListView repo;
   private UserListView user;
+  private SearchFilter searchFilter;
 
   public DriverView() {
     super(new GridLayout(2,2));
@@ -35,22 +36,27 @@ public class DriverView extends JPanel {
     return user;
   }
 
+
+
   public static void main(String[] args) {
     javax.swing.SwingUtilities.invokeLater(new Runnable() {
       public void run() {
         UserListConn testing = new UserListConn();
         testing.setFollower(true);
         //Create and set up the content pane.
-        JPanel p = new JPanel(new GridLayout(2,2));
+        JPanel p = new JPanel(new BorderLayout());
         RepoListView repo = new RepoListView();
         RepoListConn rp = new RepoListConn();
         UserListView user = new UserListView();
-        p.add(user);
-        p.add(repo);
+        p.add(user,BorderLayout.LINE_START);
+        p.add(repo,BorderLayout.LINE_END);
         SearchBox searchBox = new SearchBox();
-        p.add(searchBox);
+        JPanel header = new JPanel(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
+        p.add(searchBox,BorderLayout.PAGE_START);
         SearchFilter searchFilter = new SearchFilter();
-        p.add(searchFilter);
+        //p.add(searchFilter);
         user.update(testing.getUserLists().toArray());
         //JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("SimpleTableDemo");
@@ -84,7 +90,7 @@ public class DriverView extends JPanel {
             }
             testing.search(searchBox.getSearchCriteria().getSelectedid());
             user.update(testing.getUserLists().toArray());
-            frame.pack();
+            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
             user.getTable().addMouseListener(new MouseListener() {
               @Override
               public void mouseClicked(MouseEvent e) {
@@ -98,7 +104,7 @@ public class DriverView extends JPanel {
                   rp.setUsername(urObjctInCell);
                   rp.search();
                   repo.update(rp.getRepoList());
-                  frame.pack();
+                  frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
                   System.out.println(urObjctInCell);
                 }
 
@@ -139,7 +145,7 @@ public class DriverView extends JPanel {
               rp.setUsername(urObjctInCell);
               rp.search();
               repo.update(rp.getRepoList());
-              frame.pack();
+              frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
               System.out.println(urObjctInCell);
             }
 
@@ -166,7 +172,9 @@ public class DriverView extends JPanel {
           }
         });
 
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
       }
     });
+
   }
 }
