@@ -1,10 +1,7 @@
 package model;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
-import java.net.URL;
 
 /**
  * Created by 13515017 / Putu Arya Pradipta.
@@ -31,8 +28,8 @@ public class RemainingReq {
     JsonParser parser = new JsonParser();
     JsonObject full = parser.parse(connection.getResponse().toString()).getAsJsonObject();
     JsonObject resource = full.getAsJsonObject("resources");
-    repoReq = resource.getAsJsonObject("core").get("limit").getAsInt();
-    userReq = resource.getAsJsonObject("search").get("limit").getAsInt();
+    repoReq = resource.getAsJsonObject("core").get("remaining").getAsInt();
+    userReq = resource.getAsJsonObject("search").get("remaining").getAsInt();
   }
 
   public static void main(String[] args) {

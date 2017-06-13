@@ -10,6 +10,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.TimerTask;
+import java.util.Timer;
 
 /**
  * Created by 13515017 / Putu Arya Pradipta.
@@ -23,6 +25,16 @@ public class DriverControl {
   public DriverControl() {
     driverModel = new DriverModel();
     driverView = new DriverView();
+    TimerTask timerTask = new TimerTask() {
+      @Override
+      public void run() {
+        driverModel.getRemainingReq().update();
+        driverView.getStatusBar().setRepoRequest(driverModel.getRemainingReq().getRepoReq());
+        driverView.getStatusBar().setUserRequest(driverModel.getRemainingReq().getUserReq());
+      }
+    };
+    Timer timer = new Timer("MyTimer");
+    timer.scheduleAtFixedRate(timerTask, 0, 1000);
     driverView.getUser().update(driverModel.getUserListConn().getUserLists().toArray());
     driverView.getSearchBox().getButton().addActionListener(new ActionListener() {
       @Override
@@ -91,6 +103,12 @@ public class DriverControl {
   }
 
   public static void main(String[] args) {
-    new DriverControl();
+    SwingUtilities.invokeLater(new Runnable() {
+      @Override
+      public void run() {
+        new DriverControl();
+      }
+    });
+
   }
 }

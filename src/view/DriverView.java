@@ -16,6 +16,7 @@ public class DriverView {
   private SearchCriteria searchCriteria;
   private SignView signView;
   private MenuBar menuBar;
+  private StatusBar statusBar;
 
 
   public DriverView() {
@@ -25,6 +26,7 @@ public class DriverView {
     searchFilter = new SearchFilter();
     searchCriteria = new SearchCriteria();
     signView = new SignView();
+    statusBar = new StatusBar();
     JPanel search = new JPanel(new BorderLayout());
     search.add(searchBox,BorderLayout.PAGE_START);
     search.add(searchCriteria,BorderLayout.LINE_START);
@@ -36,6 +38,7 @@ public class DriverView {
     p.add(user,BorderLayout.LINE_START);
     p.add(repo,BorderLayout.CENTER);
     p.add(header,BorderLayout.PAGE_START);
+    p.add(statusBar,BorderLayout.PAGE_END);
 
     JFrame frame = new JFrame("SimpleTableDemo");
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -75,4 +78,7 @@ public class DriverView {
     return menuBar;
   }
 
+  public StatusBar getStatusBar() {
+    return statusBar;
+  }
 }

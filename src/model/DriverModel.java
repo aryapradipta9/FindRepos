@@ -13,6 +13,7 @@ public class DriverModel {
   public DriverModel() {
     repoListConn = new RepoListConn();
     userListConn = new UserListConn();
+    remainingReq = new RemainingReq();
   }
 
   public RepoListConn getRepoListConn() {
