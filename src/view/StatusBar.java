@@ -1,7 +1,8 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.FlowLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  * Created by 13515017 / Putu Arya Pradipta.
@@ -11,6 +12,7 @@ import java.awt.*;
 public class StatusBar extends JPanel {
   private JLabel repoRequest;
   private JLabel userRequest;
+
   public StatusBar() {
     super(new FlowLayout());
     repoRequest = new JLabel();
@@ -21,16 +23,8 @@ public class StatusBar extends JPanel {
     add(repoRequest);
   }
 
-  public JLabel getRepoRequest() {
-    return repoRequest;
-  }
-
   public void setRepoRequest(int repoRequest) {
     this.repoRequest.setText(repoRequest + "");
-  }
-
-  public JLabel getUserRequest() {
-    return userRequest;
   }
 
   public void setUserRequest(int userRequest) {
