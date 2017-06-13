@@ -5,6 +5,8 @@ import model.RepoListConn;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by 13515017 / Putu Arya Pradipta.
@@ -28,6 +30,11 @@ public class RepoListView extends JPanel {
     super(new GridLayout(1,0));
     scrollPane = new JScrollPane(table);
     add(scrollPane);
+    Repo[] test = new Repo[1];
+    test[0] = new Repo();
+    test[0].setName("");
+    test[0].setDescription("");
+    update(test);
     // converting to Object[]
   }
   public void update(Repo[] result) {

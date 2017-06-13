@@ -15,6 +15,18 @@ public class Repo {
   public Repo() {
   }
 
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setHtml_url(URL html_url) {
+    this.html_url = html_url;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
   public String getName() {
     return name;
   }

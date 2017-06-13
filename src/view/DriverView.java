@@ -48,16 +48,25 @@ public class DriverView extends JPanel {
         RepoListView repo = new RepoListView();
         RepoListConn rp = new RepoListConn();
         UserListView user = new UserListView();
+
         p.add(user,BorderLayout.LINE_START);
-        p.add(repo,BorderLayout.LINE_END);
+        p.add(repo,BorderLayout.CENTER);
         SearchBox searchBox = new SearchBox();
-        JPanel header = new JPanel(new GridBagLayout());
+        JPanel search = new JPanel(new BorderLayout());
+        search.add(searchBox,BorderLayout.PAGE_START);
+        search.add(new SearchCriteria(),BorderLayout.LINE_START);
+        SearchFilter searchFilter = new SearchFilter();
+        search.add(searchFilter,BorderLayout.CENTER);
+        JPanel header = new JPanel(new BorderLayout());
+        header.add(new SignView(),BorderLayout.LINE_START);
+        header.add(search,BorderLayout.CENTER);
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
-        p.add(searchBox,BorderLayout.PAGE_START);
-        SearchFilter searchFilter = new SearchFilter();
+        p.add(header,BorderLayout.PAGE_START);
+
         //p.add(searchFilter);
         user.update(testing.getUserLists().toArray());
+        //repo.update(rp.getRepoList());
         //JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("SimpleTableDemo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
