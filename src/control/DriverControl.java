@@ -4,11 +4,16 @@ import model.DriverModel;
 import view.DriverView;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.TimerTask;
 import java.util.Timer;
@@ -73,7 +78,47 @@ public class DriverControl {
 
               driverModel.getRepoListConn().setUsername(urObjctInCell);
               driverModel.getRepoListConn().search();
+              driverView.getRepo().setNumRepos(driverModel.getRepoListConn().getNumRepos());
+              driverView.getRepo().setUsername(driverModel.getRepoListConn().getUsername());
               driverView.getRepo().update(driverModel.getRepoListConn().getRepoList());
+              driverView.getRepo().getTable().addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                  final JTable tgt = (JTable)e.getSource();
+                  final int column = tgt.getSelectedColumn();
+                  if (column == 2) {
+                    final int row = tgt.getSelectedRow();
+                    final URL obj = (URL)tgt.getValueAt(row, column);
+                    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+                    try {
+                      desktop.browse(obj.toURI());
+                    } catch (IOException | URISyntaxException e1) {
+                      e1.printStackTrace();
+                    }
+
+                  }
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+
+                }
+              });
             }
 
           }

@@ -12,8 +12,10 @@ import java.util.ArrayList;
 public class RepoListConn {
   private String username;
   private Repo[] repoList;
+  private int numRepos;
 
   public RepoListConn() {
+    numRepos = 0;
   }
 
   public void setUsername(String username) {
@@ -29,6 +31,15 @@ public class RepoListConn {
     GetConn connection = new GetConn(urlLink.toString());
     Gson gson = new Gson();
     repoList = gson.fromJson(connection.getResponse().toString(),Repo[].class);
+    numRepos = repoList.length;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public int getNumRepos() {
+    return numRepos;
   }
 
   public static void main(String[] args) {
@@ -40,4 +51,6 @@ public class RepoListConn {
       System.out.println(temp.getName());
     }
   }
+
+
 }
