@@ -3,6 +3,8 @@ package model;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import java.io.IOException;
+
 /**
  * Created by 13515017 / Putu Arya Pradipta.
  * Tanggal 6/3/2017.
@@ -23,19 +25,13 @@ public class RemainingReq {
     return userReq;
   }
 
-  public void update() {
-    GetConn connection = new GetConn("https://api.github.com/rate_limit");
+  public void update() throws IOException {
+    GetConn connection;
+    connection = new GetConn("https://api.github.com/rate_limit");
     JsonParser parser = new JsonParser();
     JsonObject full = parser.parse(connection.getResponse().toString()).getAsJsonObject();
     JsonObject resource = full.getAsJsonObject("resources");
     repoReq = resource.getAsJsonObject("core").get("remaining").getAsInt();
     userReq = resource.getAsJsonObject("search").get("remaining").getAsInt();
-  }
-
-  public static void main(String[] args) {
-    RemainingReq testing = new RemainingReq();
-    testing.update();
-    System.out.println(testing.getRepoReq());
-    System.out.println(testing.getUserReq());
   }
 }

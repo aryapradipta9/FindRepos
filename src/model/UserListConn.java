@@ -2,7 +2,7 @@ package model;
 
 import com.google.gson.Gson;
 
-import java.net.HttpURLConnection;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -13,8 +13,6 @@ import java.util.ArrayList;
 public class UserListConn {
   private ArrayList<String> userLists;
   private String keyword;
-  private String status;
-  private HttpURLConnection con = null;
   private int minFollower;
   private int maxFollower;
   private int minRepoNum;
@@ -49,6 +47,10 @@ public class UserListConn {
   }
 
 
+  /**
+   * Konstruktor UserListConn.
+   * Menginisialisasi ArrayList dan juga mengeset min serta max dari repoNum dan follower
+   */
   public UserListConn() {
     userLists = new ArrayList<>();
     minRepoNum = 0;
@@ -60,40 +62,25 @@ public class UserListConn {
     follower = false;
   }
 
-  public UserListConn(String keyword) {
-    this.keyword = keyword;
-    userLists = new ArrayList<>();
-    minRepoNum = 0;
-    maxRepoNum = 100000;
-    minFollower = 0;
-    maxFollower = 1000000;
-    repoNum = false;
-    follower = false;
-  }
-
   public ArrayList<String> getUserLists() {
     return userLists;
-  }
-
-  // tambahin ke array
-  public void addUsername(String str) {
-    userLists.add(str);
   }
 
   public void setKeyword(String keyword) {
     this.keyword = keyword;
   }
 
-  public void setUserLists(ArrayList<String> userLists) {
-    this.userLists = userLists;
-  }
-
-  public void search(int selection) {
+  /**
+   * Fungsi search.
+   * Melakukan request pada github dan memasukkan hasilnya ke dalam arraylist.
+   * @param selection 0:username, 1:fullname, 2:email
+   */
+  public void search(int selection) throws IOException {
     // delete semua hasil terdahulu
     userLists.clear();
-    StringBuffer urlLink = new StringBuffer("https://api.github.com/search/users?" + "q=");
+    StringBuilder urlLink = new StringBuilder("https://api.github.com/search/users?" + "q=");
     if (!keyword.equals("")) {
-      urlLink.append(keyword + "+");
+      urlLink.append(keyword).append("+");
     }
     if (selection == 0) {
       urlLink.append("in:login");
@@ -103,55 +90,28 @@ public class UserListConn {
       urlLink.append("in:email");
     }
     if (follower) {
-      urlLink.append("+followers:\"" + minFollower + "%20..%20" + maxFollower + "\"");
+      urlLink.append("+followers:\"").append(minFollower).append("%20..%20")
+          .append(maxFollower).append("\"");
     }
     if (repoNum) {
-      urlLink.append("+repos:\"" + minRepoNum + "%20..%20" + maxRepoNum + "\"");
+      urlLink.append("+repos:\"").append(minRepoNum).append("%20..%20")
+          .append(maxRepoNum).append("\"");
     }
-    System.out.println(urlLink.toString());
-    GetConn connection = new GetConn(urlLink.toString());
+    GetConn connection;
+    connection = new GetConn(urlLink.toString());
     Gson gson = new Gson();
     SearchResults res = gson.fromJson(connection.getResponse().toString(),SearchResults.class);
     for (SearchResults.LoginName log : res.items) {
       userLists.add(log.login);
     }
+
   }
 
-  public void searchByEmail() {
-    // delete semua hasil terdahulu
-    userLists.clear();
-    StringBuffer urlLink = new StringBuffer("https://api.github.com/search/users?" + "q=");
-    if (!keyword.equals("")) {
-      urlLink.append(keyword + "+");
-    }
-
-    if (follower) {
-      urlLink.append("+followers:\"" + minFollower + "%20..%20" + maxFollower + "\"");
-    }
-    System.out.println(urlLink.toString());
-    GetConn connection = new GetConn(urlLink.toString());
-    Gson gson = new Gson();
-    SearchResults res = gson.fromJson(connection.getResponse().toString(),SearchResults.class);
-    for (SearchResults.LoginName log : res.items) {
-      userLists.add(log.login);
-    }
-  }
-
-  public static void main(String[] args) {
-    UserListConn testing = new UserListConn();
-    testing.setFollower(true);
-    testing.setKeyword("torv");
-    ArrayList<String> res = testing.getUserLists();
-    for (String k : res) {
-      System.out.println(k);
-    }
-  }
   private class SearchResults {
-    public int total_count;
     LoginName[] items;
 
     private class LoginName {
-      public String login;
+      String login;
 
       public LoginName() {
       }

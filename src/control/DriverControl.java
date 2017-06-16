@@ -1,22 +1,22 @@
 package control;
 
-import model.DriverModel;
-import view.DriverView;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.TimerTask;
 import java.util.Timer;
+import java.util.TimerTask;
+import javax.swing.*;
+
+import model.DriverModel;
+import view.DriverView;
+
 
 /**
  * Created by 13515017 / Putu Arya Pradipta.
@@ -33,7 +33,11 @@ public class DriverControl {
     TimerTask timerTask = new TimerTask() {
       @Override
       public void run() {
-        driverModel.getRemainingReq().update();
+        try {
+          driverModel.getRemainingReq().update();
+        } catch (IOException e) {
+          JOptionPane.showMessageDialog(driverView.getFrame(),"You are offline. Please check your connection","Error",JOptionPane.ERROR_MESSAGE);
+        }
         driverView.getStatusBar().setRepoRequest(driverModel.getRemainingReq().getRepoReq());
         driverView.getStatusBar().setUserRequest(driverModel.getRemainingReq().getUserReq());
       }
@@ -64,7 +68,13 @@ public class DriverControl {
         } else {
           driverModel.getUserListConn().setRepoNum(false);
         }
-        driverModel.getUserListConn().search(driverView.getSearchCriteria().getSelectedid());
+        try {
+          driverModel.getUserListConn().search(driverView.getSearchCriteria().getSelectedid());
+        } catch (IOException e1) {
+          if (e1.getMessage().contains("422")) {
+            JOptionPane.showMessageDialog(driverView.getFrame(),"Search box cannot empty!","Error",JOptionPane.ERROR_MESSAGE);
+          }
+        }
         driverView.getUser().update(driverModel.getUserListConn().getUserLists().toArray());
         driverView.getUser().getTable().addMouseListener(new MouseListener() {
           @Override
@@ -77,7 +87,11 @@ public class DriverControl {
               final String urObjctInCell = (String)target.getValueAt(row, column);
 
               driverModel.getRepoListConn().setUsername(urObjctInCell);
-              driverModel.getRepoListConn().search();
+              try {
+                driverModel.getRepoListConn().search();
+              } catch (IOException e1) {
+                e1.printStackTrace();
+              }
               driverView.getRepo().setNumRepos(driverModel.getRepoListConn().getNumRepos());
               driverView.getRepo().setUsername(driverModel.getRepoListConn().getUsername());
               driverView.getRepo().update(driverModel.getRepoListConn().getRepoList());
@@ -91,7 +105,9 @@ public class DriverControl {
                     final URL obj = (URL)tgt.getValueAt(row, column);
                     Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
                     try {
-                      desktop.browse(obj.toURI());
+                      if (desktop != null) {
+                        desktop.browse(obj.toURI());
+                      }
                     } catch (IOException | URISyntaxException e1) {
                       e1.printStackTrace();
                     }

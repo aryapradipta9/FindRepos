@@ -2,7 +2,7 @@ package model;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
 /**
  * Created by 13515017 / Putu Arya Pradipta.
@@ -26,12 +26,17 @@ public class RepoListConn {
     return repoList;
   }
 
-  public void search() {
-    StringBuffer urlLink = new StringBuffer("https://api.github.com/users/" + username + "/repos");
-    GetConn connection = new GetConn(urlLink.toString());
+  /**
+   * Fungsi search.
+   * Melakukan request search repository pada github api dan memasukannya pada array repoList.
+   */
+  public void search() throws IOException {
+    GetConn connection;
+    connection = new GetConn("https://api.github.com/users/" + username + "/repos");
     Gson gson = new Gson();
     repoList = gson.fromJson(connection.getResponse().toString(),Repo[].class);
     numRepos = repoList.length;
+
   }
 
   public String getUsername() {
@@ -41,16 +46,4 @@ public class RepoListConn {
   public int getNumRepos() {
     return numRepos;
   }
-
-  public static void main(String[] args) {
-    RepoListConn testing = new RepoListConn();
-    testing.setUsername("torvalds");
-    testing.search();
-    Repo[] result = testing.getRepoList();
-    for (Repo temp : result) {
-      System.out.println(temp.getName());
-    }
-  }
-
-
 }

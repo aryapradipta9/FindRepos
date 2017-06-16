@@ -76,22 +76,4 @@ public class RepoListView extends JPanel {
   public void setNumRepos(int numRepos) {
     this.numRepos.setText(numRepos + "");
   }
-  public static void main(String[] args) {
-
-    RepoListConn testing = new RepoListConn();
-    testing.setUsername("torvalds");
-    testing.search();
-    JFrame frame = new JFrame("SimpleTableDemo");
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-    //Create and set up the content pane.
-    RepoListView newContentPane = new RepoListView();
-    newContentPane.update(testing.getRepoList());
-    newContentPane.setOpaque(true); //content panes must be opaque
-    frame.setContentPane(newContentPane);
-
-    //Display the window.
-    frame.pack();
-    frame.setVisible(true);
-  }
 }

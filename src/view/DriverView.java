@@ -19,6 +19,7 @@ public class DriverView {
   private SignView signView;
   private MenuBar menuBar;
   private StatusBar statusBar;
+  private JFrame frame;
 
 
   public DriverView() {
@@ -42,7 +43,7 @@ public class DriverView {
     p.add(header,BorderLayout.PAGE_START);
     p.add(statusBar,BorderLayout.PAGE_END);
 
-    JFrame frame = new JFrame("SimpleTableDemo");
+    frame = new JFrame("FindRepos");
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     frame.setContentPane(p);
     frame.pack();
@@ -82,5 +83,9 @@ public class DriverView {
 
   public StatusBar getStatusBar() {
     return statusBar;
+  }
+
+  public JFrame getFrame() {
+    return frame;
   }
 }
