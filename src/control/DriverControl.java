@@ -33,10 +33,14 @@ public class DriverControl {
     TimerTask timerTask = new TimerTask() {
       @Override
       public void run() {
+        boolean isOnline = true;
         try {
           driverModel.getRemainingReq().update();
         } catch (IOException e) {
-          JOptionPane.showMessageDialog(driverView.getFrame(),"You are offline. Please check your connection","Error",JOptionPane.ERROR_MESSAGE);
+          isOnline = false;
+          //JOptionPane.showMessageDialog(driverView.getFrame(),"You are offline. Please check your connection","Error",JOptionPane.ERROR_MESSAGE);
+        } finally {
+          driverView.getStatusBar().setConnStatus(isOnline);
         }
         driverView.getStatusBar().setRepoRequest(driverModel.getRemainingReq().getRepoReq());
         driverView.getStatusBar().setUserRequest(driverModel.getRemainingReq().getUserReq());
@@ -161,15 +165,5 @@ public class DriverControl {
         });
       }
     });
-  }
-
-  public static void main(String[] args) {
-    SwingUtilities.invokeLater(new Runnable() {
-      @Override
-      public void run() {
-        new DriverControl();
-      }
-    });
-
   }
 }

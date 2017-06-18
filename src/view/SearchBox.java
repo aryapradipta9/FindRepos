@@ -1,9 +1,10 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
 
 /**
  * Created by 13515017 / Putu Arya Pradipta.
@@ -13,7 +14,7 @@ import java.awt.event.ActionListener;
 public class SearchBox extends JPanel {
   private JTextField textField;
   private JButton button;
-  private SearchCriteria searchCriteria;
+
   public SearchBox() {
     super(new BorderLayout());
     GridBagConstraints c = new GridBagConstraints();
@@ -31,13 +32,7 @@ public class SearchBox extends JPanel {
     c.ipadx = 0;
     c.gridx = 5;
     add(button,BorderLayout.LINE_END);
-    searchCriteria = new SearchCriteria();
-    //add(searchCriteria);
-    textField.setText("wowowo");
-  }
-
-  public SearchCriteria getSearchCriteria() {
-    return searchCriteria;
+    textField.setText("");
   }
 
   public String getTextContent() {

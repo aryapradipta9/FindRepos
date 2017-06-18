@@ -1,9 +1,8 @@
 package view;
 
-import java.awt.BorderLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.Border;
 
 /**
  * Created by 13515017 / Putu Arya Pradipta.
@@ -32,8 +31,11 @@ public class DriverView {
     statusBar = new StatusBar();
     JPanel search = new JPanel(new BorderLayout());
     search.add(searchBox,BorderLayout.PAGE_START);
-    search.add(searchCriteria,BorderLayout.LINE_START);
-    search.add(searchFilter,BorderLayout.CENTER);
+    JPanel borderPanel = new JPanel(new BorderLayout());
+    borderPanel.add(searchCriteria,BorderLayout.LINE_START);
+    borderPanel.add(searchFilter,BorderLayout.CENTER);
+    borderPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+    search.add(borderPanel,BorderLayout.CENTER);
     JPanel header = new JPanel(new BorderLayout());
     header.add(signView,BorderLayout.LINE_START);
     header.add(search,BorderLayout.CENTER);

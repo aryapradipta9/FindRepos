@@ -1,6 +1,8 @@
 package view;
 
-import javax.swing.*;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 /**
  * Created by 13515017 / Putu Arya Pradipta.

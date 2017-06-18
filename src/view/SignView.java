@@ -18,7 +18,6 @@ public class SignView extends JPanel {
     super();
     setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
     setAlignmentX(Component.LEFT_ALIGNMENT);
-    JPanel tempPanel = new JPanel(new FlowLayout());
     try {
       Image img = ImageIO.read(getClass().getResource("../assets/logo.png"));
       ImageIcon temp = new ImageIcon(img);
@@ -27,8 +26,6 @@ public class SignView extends JPanel {
       e.printStackTrace();
     }
     copyright = new JLabel("Made by Arya Pradipta");
-    //tempPanel.add(logo);
-    //tempPanel.add(new JLabel("a github search engine"));
     add(logo);
     add(copyright);
 
