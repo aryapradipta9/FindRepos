@@ -47,25 +47,4 @@ public class SearchBox extends JPanel {
   public JButton getButton() {
     return button;
   }
-
-  public static void main(String[] args) {
-    JFrame frame = new JFrame();
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    SearchBox cont = new SearchBox();
-    JPanel panel = new JPanel(new GridLayout(2,1));
-    panel.add(cont);
-    JLabel label = new JLabel("DEF");
-    panel.add(label);
-    frame.add(panel);
-    cont.getButton().addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        label.setText(cont.getTextContent());
-        frame.pack();
-      }
-    });
-    frame.pack();
-    frame.setVisible(true);
-
-  }
 }

@@ -16,11 +16,36 @@ public class UserListConn {
   private int minFollower;
   private int maxFollower;
   private int minRepoNum;
-
   private int maxRepoNum;
-
   private boolean repoNum;
   private boolean follower;
+
+
+
+
+
+  /**
+   * Konstruktor UserListConn.
+   * Menginisialisasi ArrayList dan juga mengeset min serta max dari repoNum dan follower
+   */
+  public UserListConn() {
+    userLists = new ArrayList<>();
+    minRepoNum = 0;
+    maxRepoNum = 100000;
+    minFollower = 0;
+    maxFollower = 1000000;
+    keyword = "";
+    repoNum = false;
+    follower = false;
+  }
+
+  public ArrayList<String> getUserLists() {
+    return userLists;
+  }
+
+  public void setKeyword(String keyword) {
+    this.keyword = keyword;
+  }
 
   public void setRepoNum(boolean repoNum) {
     this.repoNum = repoNum;
@@ -46,29 +71,34 @@ public class UserListConn {
     this.maxRepoNum = maxRepoNum;
   }
 
-
-  /**
-   * Konstruktor UserListConn.
-   * Menginisialisasi ArrayList dan juga mengeset min serta max dari repoNum dan follower
-   */
-  public UserListConn() {
-    userLists = new ArrayList<>();
-    minRepoNum = 0;
-    maxRepoNum = 100000;
-    minFollower = 0;
-    maxFollower = 1000000;
-    keyword = "";
-    repoNum = false;
-    follower = false;
+  public String getKeyword() {
+    return keyword;
   }
 
-  public ArrayList<String> getUserLists() {
-    return userLists;
+  public int getMinFollower() {
+    return minFollower;
   }
 
-  public void setKeyword(String keyword) {
-    this.keyword = keyword;
+  public int getMaxFollower() {
+    return maxFollower;
   }
+
+  public int getMinRepoNum() {
+    return minRepoNum;
+  }
+
+  public int getMaxRepoNum() {
+    return maxRepoNum;
+  }
+
+  public boolean isRepoNum() {
+    return repoNum;
+  }
+
+  public boolean isFollower() {
+    return follower;
+  }
+
 
   /**
    * Fungsi search.
@@ -104,7 +134,6 @@ public class UserListConn {
     for (SearchResults.LoginName log : res.items) {
       userLists.add(log.login);
     }
-
   }
 
   private class SearchResults {

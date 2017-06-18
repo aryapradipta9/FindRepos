@@ -34,17 +34,5 @@ public class SignView extends JPanel {
 
   }
 
-  public static void main(String[] args) {
-    JFrame frame = new JFrame("SimpleTableDemo");
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    //Create and set up the content pane.
-    SignView newContentPane = new SignView();
-    newContentPane.setOpaque(true); //content panes must be opaque
-    frame.setContentPane(newContentPane);
-
-    //Display the window.
-    frame.pack();
-    frame.setVisible(true);
-  }
 }

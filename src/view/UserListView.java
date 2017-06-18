@@ -1,7 +1,5 @@
 package view;
 
-import model.UserListConn;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -42,20 +40,5 @@ public class UserListView extends JPanel {
     scrollPane.setViewportView(table);
     //Add the scroll pane to this panel.
     //add(table);
-  }
-  public static void main(String[] args) {
-    UserListConn testing = new UserListConn();
-    testing.setFollower(true);
-    JFrame frame = new JFrame("SimpleTableDemo");
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    //Create and set up the content pane.
-    UserListView newContentPane = new UserListView();
-    newContentPane.update(testing.getUserLists().toArray());
-    newContentPane.setOpaque(true); //content panes must be opaque
-    frame.setContentPane(newContentPane);
-
-    //Display the window.
-    frame.pack();
-    frame.setVisible(true);
   }
 }

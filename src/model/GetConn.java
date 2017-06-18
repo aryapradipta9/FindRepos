@@ -33,6 +33,8 @@ public class GetConn {
     con.disconnect();
   }
 
+
+
   StringBuilder getResponse() {
     return response;
   }

@@ -47,8 +47,6 @@ public class RepoListView extends JPanel {
     add(scrollPane,BorderLayout.CENTER);
     Repo[] test = new Repo[1];
     test[0] = new Repo();
-    test[0].setName("");
-    test[0].setDescription("");
     update(test);
     // converting to Object[]
   }
