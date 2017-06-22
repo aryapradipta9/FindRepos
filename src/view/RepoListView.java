@@ -1,13 +1,13 @@
 package view;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import model.Repo;
 
 /**
@@ -30,10 +30,12 @@ public class RepoListView extends JPanel {
     return table;
   }
 
+  /**
+   * Konstruktor RepoListView.
+   */
   public RepoListView() {
     super(new BorderLayout());
     scrollPane = new JScrollPane(table);
-    JPanel headerPanel = new JPanel(new GridLayout(2,2));
     JPanel head1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
     head1.add(new JLabel("Current Username : "));
     username = new JLabel("");
@@ -42,6 +44,7 @@ public class RepoListView extends JPanel {
     head2.add(new JLabel("Number of repos : "));
     numRepos = new JLabel("");
     head2.add(numRepos);
+    JPanel headerPanel = new JPanel(new GridLayout(2,2));
     headerPanel.add(head1);
     headerPanel.add(new JLabel(""));
     headerPanel.add(head2);
@@ -52,6 +55,11 @@ public class RepoListView extends JPanel {
     update(test);
     // converting to Object[]
   }
+
+  /**
+   * Melakukan pembaharuan pada data tabel dan juga label.
+   * @param result Array of repos yang ingin ditampilkan
+   */
   public void update(Repo[] result) {
     Object[][] temp = new Object[result.length][3];
     for (int i = 0; i < result.length; i++) {
@@ -69,10 +77,18 @@ public class RepoListView extends JPanel {
     scrollPane.setViewportView(table);
   }
 
+  /**
+   * Setter Username.
+   * @param username string usernamenya
+   */
   public void setUsername(String username) {
     this.username.setText(username);
   }
 
+  /**
+   * Setter NumRepos.
+   * @param numRepos angka repos tersebut
+   */
   public void setNumRepos(int numRepos) {
     this.numRepos.setText(numRepos + "");
   }

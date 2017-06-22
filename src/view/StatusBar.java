@@ -14,6 +14,9 @@ public class StatusBar extends JPanel {
   private JLabel userRequest;
   private JLabel connStatus;
 
+  /**
+   * Konstruktor StatusBar.
+   */
   public StatusBar() {
     super(new FlowLayout());
     repoRequest = new JLabel();
@@ -27,14 +30,26 @@ public class StatusBar extends JPanel {
 
   }
 
+  /**
+   * Setter RepoRequest.
+   * @param repoRequest integer remaining RepoRequest
+   */
   public void setRepoRequest(int repoRequest) {
     this.repoRequest.setText(repoRequest + "");
   }
 
+  /**
+   * Setter UserRequest.
+   * @param userRequest integer remaining UserRequest
+   */
   public void setUserRequest(int userRequest) {
     this.userRequest.setText(userRequest + "");
   }
 
+  /**
+   * Setter ConnStatus.
+   * @param isOnline apakah status online atau tidak
+   */
   public void setConnStatus(boolean isOnline) {
     if (isOnline) {
       connStatus.setText("You are online");

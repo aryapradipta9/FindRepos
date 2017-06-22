@@ -10,6 +10,10 @@ import javax.swing.JMenuItem;
  * FileName : MenuBar.java.
  */
 public class MenuBar extends JMenuBar {
+
+  /**
+   * Konstruktor MenuBar.
+   */
   public MenuBar() {
     super();
     JMenu menu = new JMenu("File");

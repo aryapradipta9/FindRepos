@@ -4,8 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.powermock.api.mockito.PowerMockito;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 /**
  * Created by 13515017 / Putu Arya Pradipta.
  * Tanggal 6/17/2017.
@@ -25,7 +23,7 @@ class GetConnTest {
     GetConn getConn = PowerMockito.mock(GetConn.class);
     StringBuilder stringBuilder = new StringBuilder("testing");
     PowerMockito.when(getConn.getResponse()).thenReturn(stringBuilder);
-    assertTrue(getConn.getResponse().equals(stringBuilder));
+    assert (getConn.getResponse().equals(stringBuilder));
 
   }
 

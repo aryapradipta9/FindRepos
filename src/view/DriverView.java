@@ -25,6 +25,10 @@ public class DriverView {
   private JFrame frame;
 
 
+  /**
+   * Kostrutktor Driverview.
+   * Menginstantiasi semua objek di dalamnya.
+   */
   public DriverView() {
     repo = new RepoListView();
     user = new UserListView();
@@ -59,38 +63,74 @@ public class DriverView {
     frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
   }
 
+  /**
+   * Getter RepoListView.
+   * @return RepoListView yang digunakan
+   */
   public RepoListView getRepo() {
     return repo;
   }
 
+  /**
+   * Getter UserListView.
+   * @return UserListView yang digunakan
+   */
   public UserListView getUser() {
     return user;
   }
 
+  /**
+   * Getter SearchFilter.
+   * @return SearchFilter yang digunakan
+   */
   public SearchFilter getSearchFilter() {
     return searchFilter;
   }
 
+  /**
+   * Getter SearchBox.
+   * @return SearchBox yang digunakan
+   */
   public SearchBox getSearchBox() {
     return searchBox;
   }
 
+  /**
+   * Getter SearchCriteria.
+   * @return SearchCriteria yang digunakan
+   */
   public SearchCriteria getSearchCriteria() {
     return searchCriteria;
   }
 
+  /**
+   * Getter SignView.
+   * @return SignView yang digunakan
+   */
   public SignView getSignView() {
     return signView;
   }
 
+  /**
+   * Getter MenuBar.
+   * @return MenuBar yang digunakan
+   */
   public MenuBar getMenuBar() {
     return menuBar;
   }
 
+  /**
+   * Getter StatusBar.
+   * @return StatusBar yang digunakan
+   */
   public StatusBar getStatusBar() {
     return statusBar;
   }
 
+  /**
+   * Getter Frame.
+   * @return Frame yang digunakan
+   */
   public JFrame getFrame() {
     return frame;
   }

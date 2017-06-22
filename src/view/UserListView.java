@@ -1,8 +1,10 @@
 package view;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /**
  * Created by 13515017 / Putu Arya Pradipta.
@@ -11,34 +13,38 @@ import java.awt.*;
  */
 public class UserListView extends JPanel {
   private final Object[] header = {"Username"};
-  private Object[][] temp;
   private JTable table;
   private JScrollPane scrollPane;
-  private DefaultTableModel defaultTableModel;
-  public JTable getTable() {
-    return table;
-  }
 
+  /**
+   * Konstruktor UserListView.
+   */
   public UserListView() {
     super(new GridLayout(1,0));
     scrollPane = new JScrollPane();
     add(scrollPane);
   }
 
+  /**
+   * Update tabel dan data.
+   * @param result Array of Object dari data username
+   */
   public void update(Object[] result) {
     Object[][] temp = new Object[result.length][1];
     for (int i = 0; i < result.length; i++) {
       temp[i][0] = result[i];
     }
-    // removing all current data
-
-    //removeAll();
     table = new JTable(temp, header);
     table.setPreferredScrollableViewportSize(new Dimension(500, 70));
     table.setFillsViewportHeight(true);
-    //Create the scroll pane and add the table to it.
     scrollPane.setViewportView(table);
-    //Add the scroll pane to this panel.
-    //add(table);
+  }
+
+  /**
+   * Getter Tabel.
+   * @return tabel yang terkandung
+   */
+  public JTable getTable() {
+    return table;
   }
 }

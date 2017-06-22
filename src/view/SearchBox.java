@@ -1,10 +1,10 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.awt.BorderLayout;
-import java.awt.GridBagConstraints;
 
 /**
  * Created by 13515017 / Putu Arya Pradipta.
@@ -15,6 +15,9 @@ public class SearchBox extends JPanel {
   private JTextField textField;
   private JButton button;
 
+  /**
+   * Konstruktor SearchBox.
+   */
   public SearchBox() {
     super(new BorderLayout());
     GridBagConstraints c = new GridBagConstraints();
@@ -35,10 +38,18 @@ public class SearchBox extends JPanel {
     textField.setText("");
   }
 
+  /**
+   * Getter text Content.
+   * @return mengambil isi dari teks dalam textbox nya
+   */
   public String getTextContent() {
     return textField.getText();
   }
 
+  /**
+   * Getter Button search.
+   * @return JButton dari tombol tersebut
+   */
   public JButton getButton() {
     return button;
   }
