@@ -10,20 +10,36 @@ public class DriverModel {
   private UserListConn userListConn;
   private RemainingReq remainingReq;
 
+  /**
+   * Konstruktor DriverModel.
+   * Membuat 3 kelas yang berinteraksi dengan view.
+   */
   public DriverModel() {
     repoListConn = new RepoListConn();
     userListConn = new UserListConn();
     remainingReq = new RemainingReq();
   }
 
+  /**
+   * Getter RepoListConn.
+   * @return repoListConn yang terpasang
+   */
   public RepoListConn getRepoListConn() {
     return repoListConn;
   }
 
+  /**
+   * Getter UserListConn.
+   * @return userListConn yang terpasang
+   */
   public UserListConn getUserListConn() {
     return userListConn;
   }
 
+  /**
+   * Getter RemainingReq.
+   * @return remainingReq yang terpasang
+   */
   public RemainingReq getRemainingReq() {
     return remainingReq;
   }

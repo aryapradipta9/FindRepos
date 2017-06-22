@@ -22,9 +22,9 @@ class RepoTest {
 
   @org.junit.jupiter.api.Test
   void getHtml_url() throws MalformedURLException {
-    URL testUrl = null;
-      testUrl = new URL("https://api.github.com");
-      assert (repo.getHtml_url().equals(testUrl));
+    URL testUrl;
+    testUrl = new URL("https://api.github.com");
+    assert (repo.getHtml_url().equals(testUrl));
 
   }
 

@@ -12,8 +12,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.swing.*;
-
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import model.DriverModel;
 import view.DriverView;
 
@@ -27,6 +27,10 @@ public class DriverControl {
   private DriverView driverView;
   private DriverModel driverModel;
 
+  /**
+   * Konstruktor DriverControl.
+   * Mengatur perpindahan state antara DriverView dan DriverModel.
+   */
   public DriverControl() {
     driverModel = new DriverModel();
     driverView = new DriverView();
@@ -38,7 +42,6 @@ public class DriverControl {
           driverModel.getRemainingReq().update();
         } catch (IOException e) {
           isOnline = false;
-          //JOptionPane.showMessageDialog(driverView.getFrame(),"You are offline. Please check your connection","Error",JOptionPane.ERROR_MESSAGE);
         } finally {
           driverView.getStatusBar().setConnStatus(isOnline);
         }
@@ -54,21 +57,26 @@ public class DriverControl {
       public void actionPerformed(ActionEvent e) {
 
         try {
-          driverModel.getUserListConn().setKeyword(URLEncoder.encode(driverView.getSearchBox().getTextContent(),"UTF-8") );
+          driverModel.getUserListConn().setKeyword(
+              URLEncoder.encode(driverView.getSearchBox().getTextContent(),"UTF-8"));
         } catch (UnsupportedEncodingException e1) {
           e1.printStackTrace();
         }
         if (driverView.getSearchFilter().getFollower().isSelected()) {
           driverModel.getUserListConn().setFollower(true);
-          driverModel.getUserListConn().setMinFollower(Integer.parseInt(driverView.getSearchFilter().getMinfollower().getText()));
-          driverModel.getUserListConn().setMaxFollower(Integer.parseInt(driverView.getSearchFilter().getMaxfollower().getText()));
+          driverModel.getUserListConn().setMinFollower(
+              Integer.parseInt(driverView.getSearchFilter().getMinfollower().getText()));
+          driverModel.getUserListConn().setMaxFollower(
+              Integer.parseInt(driverView.getSearchFilter().getMaxfollower().getText()));
         } else {
           driverModel.getUserListConn().setFollower(false);
         }
         if (driverView.getSearchFilter().getRepository().isSelected()) {
           driverModel.getUserListConn().setRepoNum(true);
-          driverModel.getUserListConn().setMinRepoNum(Integer.parseInt(driverView.getSearchFilter().getMinrepository().getText()));
-          driverModel.getUserListConn().setMaxRepoNum(Integer.parseInt(driverView.getSearchFilter().getMaxrepository().getText()));
+          driverModel.getUserListConn().setMinRepoNum(
+              Integer.parseInt(driverView.getSearchFilter().getMinrepository().getText()));
+          driverModel.getUserListConn().setMaxRepoNum(
+              Integer.parseInt(driverView.getSearchFilter().getMaxrepository().getText()));
         } else {
           driverModel.getUserListConn().setRepoNum(false);
         }
@@ -76,7 +84,8 @@ public class DriverControl {
           driverModel.getUserListConn().search(driverView.getSearchCriteria().getSelectedid());
         } catch (IOException e1) {
           if (e1.getMessage().contains("422")) {
-            JOptionPane.showMessageDialog(driverView.getFrame(),"Search box cannot empty!","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                driverView.getFrame(),"Search box cannot empty!","Error",JOptionPane.ERROR_MESSAGE);
           }
         }
         driverView.getUser().update(driverModel.getUserListConn().getUserLists().toArray());
@@ -87,10 +96,8 @@ public class DriverControl {
               final JTable target = (JTable)e.getSource();
               final int row = target.getSelectedRow();
               final int column = target.getSelectedColumn();
-              // Cast to ur Object type
-              final String urObjctInCell = (String)target.getValueAt(row, column);
-
-              driverModel.getRepoListConn().setUsername(urObjctInCell);
+              final String namaUsername = (String)target.getValueAt(row, column);
+              driverModel.getRepoListConn().setUsername(namaUsername);
               try {
                 driverModel.getRepoListConn().search();
               } catch (IOException e1) {

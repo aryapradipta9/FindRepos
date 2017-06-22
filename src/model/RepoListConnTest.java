@@ -1,9 +1,6 @@
 package model;
 
 import org.junit.jupiter.api.Test;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by 13515017 / Putu Arya Pradipta.

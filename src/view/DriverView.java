@@ -1,8 +1,12 @@
 package view;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.Border;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
+
 
 /**
  * Created by 13515017 / Putu Arya Pradipta.

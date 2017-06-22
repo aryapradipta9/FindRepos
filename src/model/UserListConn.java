@@ -20,10 +20,6 @@ public class UserListConn {
   private boolean repoNum;
   private boolean follower;
 
-
-
-
-
   /**
    * Konstruktor UserListConn.
    * Menginisialisasi ArrayList dan juga mengeset min serta max dari repoNum dan follower
@@ -39,66 +35,125 @@ public class UserListConn {
     follower = false;
   }
 
+  /**
+   * Getter UserLists
+   * @return ArrayList of string dari query yang dicari.
+   */
   public ArrayList<String> getUserLists() {
     return userLists;
   }
 
+  /**
+   * Setter Keyword.
+   * @param keyword mengeset keyword yang akan dicari
+   */
   public void setKeyword(String keyword) {
     this.keyword = keyword;
   }
 
+  /**
+   * Setter RepoNum.
+   * @param repoNum apakah repoNum dienable
+   */
   public void setRepoNum(boolean repoNum) {
     this.repoNum = repoNum;
   }
 
+  /**
+   * Setter Follower.
+   * @param follower apakah follower dienable
+   */
   public void setFollower(boolean follower) {
     this.follower = follower;
   }
 
+  /**
+   * Setter MinFollower.
+   * @param minFollower integer minimal follower yang difilter
+   */
   public void setMinFollower(int minFollower) {
     this.minFollower = minFollower;
   }
 
+  /**
+   * Setter MaxFollower.
+   * @param maxFollower integer maksimal follower yang difilter
+   */
   public void setMaxFollower(int maxFollower) {
     this.maxFollower = maxFollower;
   }
 
+  /**
+   * Setter MinRepoNum.
+   * @param minRepoNum integer minimal repoNum yang difilter
+   */
   public void setMinRepoNum(int minRepoNum) {
     this.minRepoNum = minRepoNum;
   }
 
+  /**
+   * Setter MaxRepoNum.
+   * @param maxRepoNum integer maksimal repoNum yang difilter
+   */
   public void setMaxRepoNum(int maxRepoNum) {
     this.maxRepoNum = maxRepoNum;
   }
 
+  /**
+   * Getter Keyword.
+   * @return mengambil string keyword apa yang tersimpan
+   */
   public String getKeyword() {
     return keyword;
   }
 
+  /**
+   * Getter MinFollower.
+   * @return integer minimal follower yang difilter
+   */
   public int getMinFollower() {
     return minFollower;
   }
 
+  /**
+   * Getter MaxFollower.
+   * @return integer maksimal follower yang difilter
+   */
   public int getMaxFollower() {
     return maxFollower;
   }
 
+  /**
+   * Getter MinRepoNum.
+   * @return integer minimal repoNum yang difilter
+   */
   public int getMinRepoNum() {
     return minRepoNum;
   }
 
+  /**
+   * Getter MaxRepoNum.
+   * @return integer maksimal repoNum yang difilter
+   */
   public int getMaxRepoNum() {
     return maxRepoNum;
   }
 
+  /**
+   * Fungsi IsRepoNum.
+   * @return apakah repoNum dienable
+   */
   public boolean isRepoNum() {
     return repoNum;
   }
 
+  /**
+   * Fungsi IsFollower.
+   * @return apakah follower dienable
+   */
   public boolean isFollower() {
     return follower;
   }
-
 
   /**
    * Fungsi search.

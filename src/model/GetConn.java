@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 
 /**
@@ -18,11 +16,15 @@ import java.net.URL;
 public class GetConn {
   private StringBuilder response;
 
+  /**
+   * Konstruktor GetConn.
+   * @param link URL yang akan disambungkan dan dibaca responsnya
+   * @throws IOException Jika string bukan url ataupun tidak terkoneksi dengan internet
+   */
   public GetConn(String link) throws IOException {
     response = new StringBuilder();
-    HttpURLConnection con = null;
     URL url = new URL(link);
-    con = (HttpURLConnection) url.openConnection();
+    HttpURLConnection con = (HttpURLConnection) url.openConnection();
     con.setRequestMethod("GET");
     InputStream in = new BufferedInputStream(con.getInputStream());
     BufferedReader bfr = new BufferedReader(new InputStreamReader(in));
@@ -33,9 +35,11 @@ public class GetConn {
     con.disconnect();
   }
 
-
-
-  StringBuilder getResponse() {
+  /**
+   * Getter Response.
+   * @return Stringbuilder hasil dari respons yang diberikan link
+   */
+  public StringBuilder getResponse() {
     return response;
   }
 }

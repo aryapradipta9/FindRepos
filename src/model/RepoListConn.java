@@ -14,14 +14,26 @@ public class RepoListConn {
   private Repo[] repoList;
   private int numRepos;
 
+  /**
+   * Konstruktor RepoListConn.
+   * Mengeset numRepos ke 0
+   */
   public RepoListConn() {
     numRepos = 0;
   }
 
+  /**
+   * Setter usename.
+   * @param username string username yang akan dicari
+   */
   public void setUsername(String username) {
     this.username = username;
   }
 
+  /**
+   * Getter RepoList.
+   * @return Array of Repo yang merupakan hasil pencarian terakhir
+   */
   public Repo[] getRepoList() {
     return repoList;
   }
@@ -39,10 +51,18 @@ public class RepoListConn {
 
   }
 
+  /**
+   * Getter username.
+   * @return String username terakhir yang dicari
+   */
   public String getUsername() {
     return username;
   }
 
+  /**
+   * Getter NumRepos.
+   * @return integer jumlah numRepos hasil pencarian
+   */
   public int getNumRepos() {
     return numRepos;
   }

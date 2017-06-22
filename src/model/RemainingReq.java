@@ -14,17 +14,33 @@ public class RemainingReq {
   private int repoReq;
   private int userReq;
 
+  /**
+   * Konstruktor RemainingReq.
+   */
   public RemainingReq() {
   }
 
+  /**
+   * Getter RepoReq.
+   * @return integer repoReq hasil update terakhir
+   */
   public int getRepoReq() {
     return repoReq;
   }
 
+  /**
+   * Getter UserReq.
+   * @return integer userReq hasil update terakhir
+   */
   public int getUserReq() {
     return userReq;
   }
 
+  /**
+   * Fungsi update.
+   * Melakukan pembaharuan pada repoReq dan userReq
+   * @throws IOException Jika tidak terdapat koneksi internet
+   */
   public void update() throws IOException {
     GetConn connection;
     connection = new GetConn("https://api.github.com/rate_limit");

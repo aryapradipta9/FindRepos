@@ -2,10 +2,6 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * Created by 13515017 / Putu Arya Pradipta.
  * Tanggal 6/18/2017.
@@ -13,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class RemainingReqTest {
   @Test
-  void update() throws IOException {
+  void update() throws java.io.IOException {
     RemainingReq remainingReq = new RemainingReq();
     remainingReq.update();
     assert remainingReq.getRepoReq() <= 60;
