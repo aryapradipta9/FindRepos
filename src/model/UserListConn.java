@@ -159,6 +159,7 @@ public class UserListConn {
    * Fungsi search.
    * Melakukan request pada github dan memasukkan hasilnya ke dalam arraylist.
    * @param selection 0:username, 1:fullname, 2:email
+   * @throws IOException jika internet tidak tersambung
    */
   public void search(int selection) throws IOException {
     // delete semua hasil terdahulu

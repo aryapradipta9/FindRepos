@@ -41,6 +41,7 @@ public class RepoListConn {
   /**
    * Fungsi search.
    * Melakukan request search repository pada github api dan memasukannya pada array repoList.
+   * @throws IOException jika tidak terdapat koneksi internet
    */
   public void search() throws IOException {
     GetConn connection;
