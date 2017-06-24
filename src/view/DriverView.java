@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,11 +19,11 @@ public class DriverView {
   private UserListView user;
   private SearchFilter searchFilter;
   private SearchBox searchBox;
-  private SearchCriteria searchCriteria;
   private SignView signView;
   private MenuBar menuBar;
   private StatusBar statusBar;
   private JFrame frame;
+  private SearchCriteria searchCriteria;
 
 
   /**
@@ -61,6 +62,7 @@ public class DriverView {
     menuBar = new MenuBar();
     frame.setJMenuBar(menuBar);
     frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    frame.setMinimumSize(new Dimension(500,500));
   }
 
   /**
@@ -133,5 +135,9 @@ public class DriverView {
    */
   public JFrame getFrame() {
     return frame;
+  }
+
+  public static void main(String[] args) {
+    new DriverView();
   }
 }

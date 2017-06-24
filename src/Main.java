@@ -1,5 +1,6 @@
 import control.DriverControl;
-import javax.swing.SwingUtilities;
+
+import javax.swing.*;
 
 /**
  * Created by 13515017 / Putu Arya Pradipta.
@@ -12,6 +13,12 @@ public class Main {
    * @param args kosong
    */
   public static void main(String[] args) {
+    try {
+      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+        | UnsupportedLookAndFeelException e) {
+      e.printStackTrace();
+    }
     SwingUtilities.invokeLater(new Runnable() {
       @Override
       public void run() {

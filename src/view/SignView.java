@@ -26,7 +26,7 @@ public class SignView extends JPanel {
     setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
     setAlignmentX(Component.LEFT_ALIGNMENT);
     try {
-      Image img = ImageIO.read(getClass().getResource("../assets/logo.png"));
+      Image img = ImageIO.read(getClass().getResource("logo.png"));
       ImageIcon temp = new ImageIcon(img);
       logo = new JLabel(temp);
     } catch (IOException e) {

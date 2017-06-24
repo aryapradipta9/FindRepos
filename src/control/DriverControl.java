@@ -14,6 +14,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.event.MenuKeyEvent;
+import javax.swing.event.MenuKeyListener;
+
 import model.DriverModel;
 import view.DriverView;
 
@@ -52,6 +55,12 @@ public class DriverControl {
     Timer timer = new Timer("MyTimer");
     timer.scheduleAtFixedRate(timerTask, 0, 1000);
     driverView.getUser().update(driverModel.getUserListConn().getUserLists().toArray());
+    driverView.getMenuBar().getExit().addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        System.exit(0);
+      }
+    });
     driverView.getSearchBox().getButton().addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {

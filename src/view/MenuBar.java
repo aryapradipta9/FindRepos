@@ -11,6 +11,8 @@ import javax.swing.JMenuItem;
  */
 public class MenuBar extends JMenuBar {
 
+  private JMenuItem pref;
+  private JMenuItem exit;
   /**
    * Konstruktor MenuBar.
    */
@@ -18,10 +20,26 @@ public class MenuBar extends JMenuBar {
     super();
     JMenu menu = new JMenu("File");
     add(menu);
-    JMenuItem about = new JMenu("About");
-    menu.add(about);
+    pref = new JMenuItem("Preferences");
+    menu.add(pref);
     menu.addSeparator();
-    JMenuItem exit = new JMenu("Exit");
+    exit = new JMenuItem("Exit");
     menu.add(exit);
+  }
+
+  /**
+   * Getter Pref.
+   * @return JMenuItem pref
+   */
+  public JMenuItem getPref() {
+    return pref;
+  }
+
+  /**
+   * Getter Exit.
+   * @return JMenuItem exit
+   */
+  public JMenuItem getExit() {
+    return exit;
   }
 }
