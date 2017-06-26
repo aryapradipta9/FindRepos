@@ -2,6 +2,12 @@
 
 Aplikasi ini dibangun dengan bahasa pemrograman JAVA dengan menggunakan Graphical User Interface. Aplikasi ini juga akan dicheck menggunakan static analyzer untuk menganalisis kode yang telah dibuat serta menggunakan Google Style Code sebagai panduan.
 
+Aplikasi ini dapat diunduh di link berikut
+<a href="https://github.com/aryapradipta9/FindRepos/blob/master/release/Project1-CaLabpro.jar">FindRepos</a>
+
+Screenshot dari aplikasi ini adalah sebagai berikut
+
+<img src="https://github.com/aryapradipta9/FindRepos/blob/master/doc/main.png"></img>
 JSON
 ====
 JSON (Javascript Object Notation) adalah sebuah struktur data. JSON bisa dibaca oleh manusia dan juga sangat mudah untuk diparsing. JSON juga tidak bergantung pada bahasa pemrograman yang digunakan. Salah satu parser dari JSON adalah Gson. Gson merupakan parser dari Google yang digunakan oleh perusahaan tersebut dalam aplikasinya.
